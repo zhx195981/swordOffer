@@ -1,5 +1,8 @@
 package logic;
 
+/**
+ * 实现除法
+ */
 public class divide {
     public int divide1(int dividend, int divisor) {
         int num = 0;
