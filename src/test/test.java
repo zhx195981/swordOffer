@@ -1,6 +1,7 @@
 package test;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,35 +16,26 @@ class ListNode {
 
 class test {
 
-    public int divide(int dividend, int divisor) {
-        int num = 0;
-        Boolean flag = (dividend >0 && divisor > 0) || (dividend < 0 && divisor < 0);
-        if(dividend == Integer.MIN_VALUE && divisor == -1)
-            return Integer.MAX_VALUE;
+    public static int rob(int[] nums) {
+        int length = nums.length;
+        int sumFirst = 0;
+        int sumSecond = 0;
+        for(int i = 0; i < length; i = i+2)
+            sumFirst += nums[i];
+        for(int j = 1; j < length; j = j+2)
+            sumSecond += nums[j];
+        return Math.max(sumFirst, sumSecond);
 
-        dividend = -Math.abs(dividend);
-        divisor = -Math.abs(divisor);
 
-        while(dividend <= divisor){
-            int c = 1;
-            int a = divisor;
-            while(dividend - a <= a){
-                a = a << 1;
-                c = c << 1;
-            }
-
-            num = num + c;
-            dividend = dividend - a;
-        }
-        if(flag == true)
-            return num;
-        else
-            return num * -1;
     }
 
     public static void main(String[] args) {
         //int a = divide(-2147483648,-1);
-        System.out.println(Math.abs(-2147483648));
+        int[] array = {2,1,1,2};
+        int a =  rob(array);
+
+        ArrayList<Integer> list = new ArrayList<>();
+
 
     }
 
