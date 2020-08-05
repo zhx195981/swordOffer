@@ -1,6 +1,4 @@
-package logic;
-
-import java.util.ArrayList;
+package logic.rob;
 
 /**
  * 你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都围成一圈，这意味着第一个房屋和最后一个房屋是紧挨着的。

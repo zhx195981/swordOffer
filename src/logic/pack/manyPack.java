@@ -1,4 +1,4 @@
-package logic;
+package logic.pack;
 
 public class manyPack {
 
