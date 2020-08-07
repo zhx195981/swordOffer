@@ -1,5 +1,9 @@
 package logic;
 
+/**
+ *
+ * 字符串相加
+ */
 public class addStrings {
     public String addStrings1(String num1, String num2) {
         int carry = 0;
