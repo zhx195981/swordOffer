@@ -1,4 +1,4 @@
-package logic;
+package Sort;
 
 public class QuickSort {
     public static void quickSort(int[] array, int start, int end){
