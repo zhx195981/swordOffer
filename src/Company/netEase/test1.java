@@ -1,4 +1,4 @@
-package netEase;
+package Company.netEase;
 
 import java.util.Scanner;
 

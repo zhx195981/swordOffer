@@ -1,35 +1,83 @@
 package logic;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.HashMap;
 
-public class LRUCache {
+class DoubleNode{
+    DoubleNode next = null;
+    DoubleNode front = null;
+    int key;
+    int val;
+    DoubleNode(int key, int val){
+        this.key = key;
+        this.val = val;
+    }
+}
+
+class LRUCache {
     int capacity;
-    Map<Integer,Integer> map;
+    DoubleNode head = new DoubleNode(0,0);
+    DoubleNode tail = new DoubleNode(0,0);
+    HashMap<Integer,DoubleNode> map = new HashMap<>();
+
 
     public LRUCache(int capacity) {
-
         this.capacity = capacity;
-        map = new LinkedHashMap<>();
+        head.next = tail;
+        tail.front = head;
     }
 
     public int get(int key) {
-        if(!map.containsKey(key))
+        if(capacity == 0 || !map.containsKey(key)){
             return -1;
-        Integer value = map.remove(key);
-        map.put(key, value);
-        return value;
+        }else{
+            DoubleNode tmpNode = map.get(key);
+            moveToFirst(tmpNode);
+            return tmpNode.val;
+        }
 
     }
 
     public void put(int key, int value) {
         if(map.containsKey(key)){
-            map.remove(key);
-            map.put(key, value);
-            return;
+            DoubleNode tmpNode =  map.get(key);
+            tmpNode.val = value;
+            moveToFirst(tmpNode);
+        }else{
+            if(map.size() == capacity){
+                deleteLastNode();
+            }
+            DoubleNode newNode = new DoubleNode(key,value);
+            map.put(key,newNode);
+            DoubleNode tmpNode = head.next;
+            tmpNode.front = newNode;
+            newNode.next = tmpNode;
+            head.next = newNode;
+            newNode.front = head;
         }
-        map.put(key,value);
-        if(map.size() > capacity)
-            map.remove(map.entrySet().iterator().next().getKey());
+
+    }
+
+    public void moveToFirst(DoubleNode tmpNode){
+        tmpNode.front.next = tmpNode.next;
+        tmpNode.next.front = tmpNode.front;
+        DoubleNode tmp = head.next;
+        head.next = tmpNode;
+        tmpNode.front = head;
+        tmpNode.next = tmp;
+        tmp.front = tmpNode;
+    }
+
+    public void deleteLastNode(){
+        DoubleNode tmpNode = tail.front;
+        tmpNode.front.next = tail;
+        tail.front = tmpNode.front;
+        map.remove(tmpNode.key);
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */

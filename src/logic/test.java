@@ -6,6 +6,7 @@ class People {
     String name;
     int age;
 
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj)
@@ -51,7 +52,6 @@ class animal {
 
 public class test {
 
-
     public static void main(String[] args) {
 
         animal a = new animal();
@@ -62,6 +62,9 @@ public class test {
         b.animalName = " xxx";
 
         System.out.println(a.equals(b));
+
+
+
 
 
     }

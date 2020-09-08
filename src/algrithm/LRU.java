@@ -18,9 +18,9 @@ class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 
 class LRUTest {
     public static void main(String[] args) {
-        LRULinkedHashMap<String,Integer> map = new LRULinkedHashMap<>(4);
-        for(int i=0;i<50;i++) {
-            map.put("aa"+i, i);
+        LRULinkedHashMap<String, Integer> map = new LRULinkedHashMap<>(4);
+        for (int i = 0; i < 50; i++) {
+            map.put("aa" + i, i);
             for (Integer entry : map.values()) {
                 System.out.print(entry + "--");
             }
